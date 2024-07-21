@@ -15,6 +15,7 @@ import { ConfigModule } from '@nestjs/config';
 import { EspecialidadeModule } from './especialidade/especialidade.module';
 import { MedicoModule } from './medico/medico.module';
 import { PacienteModule } from './paciente/paciente.module';
+import { MedicoEspecialidadeModule } from './medicoEspecialidade/medicoEspecialidade.module';
 
 @Module({
     imports: [
@@ -24,6 +25,7 @@ import { PacienteModule } from './paciente/paciente.module';
         EspecialidadeModule,
         MedicoModule,
         PacienteModule,
+        MedicoEspecialidadeModule,
     ],
     controllers: [AppController],
     providers: [AppService],
