@@ -3,17 +3,13 @@ import { AuthLoginDto } from './dtos/authLogin.dto';
 import { AuthRegisterDto } from './dtos/authRegister.dto';
 import { AuthForgetDto } from './dtos/authForget.dto';
 import { AuthResetDto } from './dtos/authReset.dto';
-import { UserService } from 'src/user/user.service';
 import { AuthService } from './auth.service';
 import { AuthGuard } from 'src/guards/auth.guard';
 import { User } from 'src/decorators/user.decorator';
 
 @Controller('auth')
 export class AuthController {
-    constructor(
-        private readonly userService: UserService,
-        private readonly authService: AuthService,
-    ) {}
+    constructor(private readonly authService: AuthService) {}
 
     @Post('login')
     async login(@Body() { email, password }: AuthLoginDto) {

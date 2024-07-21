@@ -7,6 +7,11 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+enum Status {
+  A
+  I
+}
+
 model User {
   id         Int      @id @default(autoincrement()) @db.UnsignedInt
   nome       String   @db.VarChar(63)
@@ -20,4 +25,50 @@ model User {
   @@map("users")
 }
 
+model Especialidade {
+  id         Int           @id @default(autoincrement())
+  nome       String
+  codigo     Int        @unique
+  status     String
+  medicos    Medico_Especialidade[]
+  agendamentos Agendamento[]
+}
 
+model Medico {
+  id              Int                 @id @default(autoincrement())
+  nome            String
+  uf              String
+  numero_crm      Int
+  especialidades  Medico_Especialidade[]
+  agendamentos    Agendamento[]
+}
+
+model Paciente {
+  id                Int           @id @default(autoincrement())
+  nome              String
+  cpf               String        @unique
+  numero_carteirinha Int
+  agendamentos      Agendamento[]
+}
+
+model Agendamento {
+  id             Int            @id @default(autoincrement())
+  id_medico      Int
+  id_especialidade Int
+  data_agenda    DateTime
+  hora           DateTime
+  id_paciente    Int?
+  medico         Medico         @relation(fields: [id_medico], references: [id])
+  especialidade  Especialidade  @relation(fields: [id_especialidade], references: [id])
+  paciente       Paciente?      @relation(fields: [id_paciente], references: [id])
+}
+
+model Medico_Especialidade {
+  id               Int           @id @default(autoincrement())
+  medico_id         Int
+  especialidade_id  Int
+  medico           Medico        @relation(fields: [medico_id], references: [id])
+  especialidade    Especialidade @relation(fields: [especialidade_id], references: [id])
+
+  @@unique([medico_id, especialidade_id])
+}

@@ -12,12 +12,18 @@ import { UserModule } from './user/user.module';
 import { UserIdCheckMiddleware } from './middlewares/user-id-check.middleware';
 import { AuthModule } from './auth/auth.module';
 import { ConfigModule } from '@nestjs/config';
+import { EspecialidadeModule } from './especialidade/especialidade.module';
+import { MedicoModule } from './medico/medico.module';
+import { PacienteModule } from './paciente/paciente.module';
 
 @Module({
     imports: [
         ConfigModule.forRoot(),
         forwardRef(() => UserModule),
         forwardRef(() => AuthModule),
+        EspecialidadeModule,
+        MedicoModule,
+        PacienteModule,
     ],
     controllers: [AppController],
     providers: [AppService],

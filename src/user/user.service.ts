@@ -113,6 +113,7 @@ export class UserService {
             data.role = role;
         }
 
+        data.updated_at = new Date();
         return this.prismaService.user.update({
             data,
             where: {
