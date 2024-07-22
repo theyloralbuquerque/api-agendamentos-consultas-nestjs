@@ -16,6 +16,7 @@ import { EspecialidadeModule } from './especialidade/especialidade.module';
 import { MedicoModule } from './medico/medico.module';
 import { PacienteModule } from './paciente/paciente.module';
 import { MedicoEspecialidadeModule } from './medicoEspecialidade/medicoEspecialidade.module';
+import { AgendamentoModule } from './agendamento/agendamento.module';
 
 @Module({
     imports: [
@@ -26,6 +27,7 @@ import { MedicoEspecialidadeModule } from './medicoEspecialidade/medicoEspeciali
         MedicoModule,
         PacienteModule,
         MedicoEspecialidadeModule,
+        AgendamentoModule,
     ],
     controllers: [AppController],
     providers: [AppService],

@@ -51,7 +51,7 @@ model Agendamento {
   id_medico      Int
   id_especialidade Int
   data_agenda    DateTime
-  hora           DateTime
+  hora           String
   id_paciente    Int?
   medico         Medico         @relation(fields: [id_medico], references: [id])
   especialidade  Especialidade  @relation(fields: [id_especialidade], references: [id])
